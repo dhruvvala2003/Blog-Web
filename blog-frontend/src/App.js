@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Extra from './Extra';
+import Hello from './Hello';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         </a>
       </header>
 
-
+    <Hello/>
       <Extra/>
     </div>
   );
