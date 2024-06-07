@@ -1,5 +1,6 @@
 package com.codeBlogApi.blogapi.paylode;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 
 public class UserDto {
@@ -10,11 +11,14 @@ public class UserDto {
     String name;
 
     @NotBlank
-            @Size(min = 3,max = 10,message = "password must b/w 3 to 10 char.")
+    @Size(min = 3,max = 10,message = "password must b/w 3 to 10 char.")
     String password;
+    @NotBlank
     @Email(message = "enter valid email ")
+
     String email;
-    @NotNull
+
+    @NotBlank
     String about;
     public UserDto(){
 

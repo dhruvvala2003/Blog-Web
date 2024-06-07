@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
 
     @Autowired
     UserService us;
 
     @PostMapping("/")
-    ResponseEntity<UserDto> createUser(@Valid @RequestBody  UserDto udto)
+    ResponseEntity<UserDto>createUserr(@Valid @RequestBody  UserDto udto)
 
     {
            UserDto ud=us.createUser(udto);

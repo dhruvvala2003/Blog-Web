@@ -16,7 +16,11 @@ public class User {
     int id;
 
     String name;
+
+
+    @Column(unique = true)
     String email;
+
     String password;
     String about;
 
