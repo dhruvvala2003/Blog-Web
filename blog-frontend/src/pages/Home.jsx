@@ -1,20 +1,21 @@
 import React from 'react'
 import Base from '../component/Base'
 import { isLogin } from '../auth';
-import { useNavigate } from 'react-router-dom';
+import NewFeed from '../component/NewFeed';
+import { Container } from 'reactstrap';
 const Home = () => {
 
-    const nav=useNavigate();
-
+ 
 
   return (
-    <div>
-    <Base>
-      
-      Home
-      Home
-    </Base>
-    </div>
+        <div style={{"background-color":"#eceff1", "height":"170vh","width":"100vw"}}>
+          <Base>
+            <Container>
+
+              <NewFeed/>
+            </Container>
+          </Base>
+        </div>
   )
 }
 

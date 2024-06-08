@@ -15,7 +15,7 @@ import {
   NavbarText,
 } from 'reactstrap';
 
-import { NavLink as ReactLink, useFetcher, useNavigate } from 'react-router-dom';
+import { Navigate, NavLink as ReactLink, useFetcher, useNavigate } from 'react-router-dom';
 import { doLogout, getCurrentUser, isLogin } from '../auth';
 
 
@@ -42,8 +42,8 @@ const MyNavbar = () => {
 
     doLogout();
     setLogin(false);
-
-    // nav("/");
+    
+    
 
   }
 

@@ -15,16 +15,17 @@
     }
 
 //local storage ma save karava user details
-    export const doLogin=(email,password)=>{
+    export const doLogin=(email,password,uid)=>{
             localStorage.setItem("email",email)
             localStorage.setItem("password",password)
-
+            localStorage.setItem("uid",uid);
     }
 
 //local storage ma thi userdetails remove karava    
     export const doLogout=()=>{
         localStorage.removeItem("email")
         localStorage.removeItem("password")
+        localStorage.removeItem("uid");
     }
 
 
@@ -35,7 +36,8 @@
         {
             let userEmail=localStorage.getItem("email")
             let userPassword=localStorage.getItem("password")
-            return {email:userEmail,password:userPassword};
+            let uid=localStorage.getItem("uid");
+            return {email:userEmail,password:userPassword,uid:uid};
         }
         else{
             return false;

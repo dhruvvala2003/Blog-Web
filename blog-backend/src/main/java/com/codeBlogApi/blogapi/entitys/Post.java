@@ -17,7 +17,7 @@ public class Post {
     @Column(name="post title", length = 100,nullable = false)
     String title;
 
-    @Column(length = 1000)
+    @Column(length = 100000)
     String content;
 
     String imageName;

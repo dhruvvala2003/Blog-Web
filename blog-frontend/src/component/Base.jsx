@@ -1,5 +1,6 @@
 import React from 'react'
 import MyNavbar from './MyNavbar'
+import Footer from './Footer'
 
 
 
@@ -15,7 +16,10 @@ const Base = ({title="Welcome To Website" , children}) => {
 
     {children}
     
-      <h1>this is footer</h1>
+  
+  <div>
+    <Footer/>
+  </div>
       </>
   )
 }

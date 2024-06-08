@@ -47,7 +47,8 @@ const Login = () => {
       
         if(user.email===loginDetails.email && user.password===loginDetails.password)
           {
-            doLogin(loginDetails.email,loginDetails.password);
+           
+            doLogin(loginDetails.email,loginDetails.password,user.id);
 
               toast.success("login sucesfulll");
               nav("/")

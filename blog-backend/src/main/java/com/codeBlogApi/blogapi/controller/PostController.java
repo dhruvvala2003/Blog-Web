@@ -36,7 +36,7 @@ public class PostController {
 
 
     // store post by uid & cid
-    @PostMapping("user/{userId}/category/{categoryId}/post")
+    @PostMapping("/user/{userId}/category/{categoryId}/post")
     ResponseEntity<PostDto>createPost(@RequestBody PostDto pdto,
                                       @PathVariable Integer userId,
                                       @PathVariable Integer categoryId){
@@ -51,7 +51,7 @@ public class PostController {
 
 
     //getPostBy User
-    @GetMapping("user/{uid}/post")
+    @GetMapping("/user/{uid}/post")
     ResponseEntity<List<PostDto>>getPostByuser(@PathVariable Integer uid)
     {
          List<PostDto> PostDtolist=  postService.getPostByUser(uid);
@@ -60,7 +60,7 @@ public class PostController {
     }
 
     //getPost by category
-    @GetMapping("user/{cid}/category")
+    @GetMapping("/user/{cid}/category")
     ResponseEntity<List<PostDto>>getPostByCategory(@PathVariable Integer cid)
     {
         List<PostDto> PostDtolist=  postService.getPostByCategory(cid);
@@ -71,7 +71,7 @@ public class PostController {
 
     //geetAllPost
 
-    @GetMapping("posts")
+    @GetMapping("/posts")
     ResponseEntity<PostResponce>getAllpost(@RequestParam(value = "pageNumber",defaultValue = AppConstant.PAGE_NUMBER,required = false)Integer pageNumber,
                                            @RequestParam(value = "pageSize",defaultValue = AppConstant.PAGE_SIZE,required = false)Integer pageSize,
                                            @RequestParam(value = "sortBy",defaultValue = AppConstant.SORT_BY,required = false)String  sortBy,
