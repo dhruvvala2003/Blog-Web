@@ -1,14 +1,43 @@
 import React, { useEffect, useState } from 'react'
 import Base from '../component/Base'
-import { Card, CardBody, CardText, Col, Container, Row } from 'reactstrap'
+import { Button, Card, CardBody, CardText, Col, Container, Input, Row } from 'reactstrap'
 import { useLocation } from 'react-router-dom'
+import { createComment } from '../service/PostService'
+import { toast } from 'react-toastify'
+import { getCurrentUser, isLogin } from '../auth'
+import { getUser } from '../service/UserService'
 
 const PostPage = () => {
 
-    const [data,setData]=useState({})
-
-
     const location=useLocation();
+
+    const [data,setData]=useState({})
+    const [user,setUser]=useState({})
+
+    const [comment,setComment]=useState({
+        content:''
+    })
+
+    useEffect(()=>{
+
+        if(!isLogin())
+        {
+            console.log("not login")
+            return;
+        }
+
+        getUser((getCurrentUser().uid)).then((res)=>{
+            console.log("user",res);
+            setUser(res);
+        })
+        .catch((error)=>{
+            console.log(error);
+
+        })
+
+    },[])
+
+    
 
     useEffect(()=>{
         console.log(location.state)
@@ -22,6 +51,42 @@ const PostPage = () => {
 
     }
    
+    const handleComment=()=>{
+
+            if(! isLogin())
+            {
+                toast.error("You Need To Login First")
+                return
+            }
+
+           if((comment.content).trim() ==='')
+            {
+                return
+            }
+
+        comment.content= user.name + " : "+ comment.content
+
+        createComment(comment,data.post_id).then((res)=>{
+
+            console.log("sucessfully added comment")
+            toast.success("comment added sucessfully")
+
+            setData({
+                ...data,
+                comments:[...data.comments,res.data]
+
+            })
+
+            setComment({
+                content:''
+
+        })
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    }
+
   return (
     
     <Base>
@@ -49,6 +114,51 @@ const PostPage = () => {
                         </CardBody>
                     </Card>
 
+
+                </Col>
+            </Row>
+
+            {/* for comments... */}
+
+            <Row className='mt-4'>
+
+                <Col md={
+                    {
+                            size:9,
+                            offset:1
+                    }
+                }>
+
+                    <h3>Comments: {(data.comments)?.length}</h3>
+
+                    {
+                        (data.comments)?.map((c,index)=>{
+
+                                return(
+                                    <Card key={index} className='mt-2'>
+                                        <CardBody>
+                                            <CardText>
+                                            {c.content}
+                                            </CardText>
+                                        </CardBody>
+                                    </Card>
+                                    
+                                )
+                        })
+                    }
+
+                    {/* add comment  */}
+                                 <Card  className='mt-4'>
+                                        <CardBody>
+                                            <Input type='textarea' 
+                                            placeholder='Enter Comment Here'
+                                            onChange={(e)=>setComment({content:e.target.value})}
+                                            value={comment.content}
+                                             />
+
+                                            <Button onClick={handleComment} className='mt-2' color='primary'>Submit</Button>
+                                        </CardBody>
+                                 </Card>
 
                 </Col>
             </Row>
