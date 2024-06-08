@@ -1,9 +1,23 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, Card, CardBody, CardText } from 'reactstrap'
 
 const Post = ({post={title:"this is post title",content:"this is default content"}}) => {
 
+    const nav=useNavigate();
 
+  const handlePost=()=>{
+
+    console.log(post);
+      const tmp={
+       ...post
+
+      }
+
+
+      nav("/post",{state:tmp});
+
+  }
 
   return (
     <div>
@@ -14,7 +28,7 @@ const Post = ({post={title:"this is post title",content:"this is default content
                     {/* {post.content.substring(0,40)}... */}
                 </CardText>
 
-                <Button  >Read More</Button>
+                <Button onClick={handlePost} >Read More</Button>
             </CardBody>
 
 

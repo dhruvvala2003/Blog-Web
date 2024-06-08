@@ -9,6 +9,7 @@ import { Bounce, ToastContainer } from "react-toastify";
 import PrivateRouter from "./component/PrivateRouter";
 import MyInfo from "./component/MyInfo";
 import UserDashbord from "./component/UserDashbord";
+import PostPage from "./pages/PostPage";
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
           <Route path="/user" element={< PrivateRouter/>}/>
           <Route path="/myInfo" element={< MyInfo/>}/>
           <Route path="/userDashbord" element={<UserDashbord/>}/>
+
+          <Route path="/post" element={< PostPage/>}/>
         </Routes>
       </BrowserRouter>
     </>
