@@ -63,10 +63,12 @@ public class PostServiceImpl implements PostService {
 
         Post p=postRepo.findById(pid).orElseThrow(()->new ResourceNotFoundException("Post","Post Id",pid));
 
+        Category c= this.categoryRepo.findById(postDto.getCategory11().getCategory_Id()).get();
+
         p.setTitle(postDto.getTitle());
         p.setContent(postDto.getContent());
         p.setImageName(postDto.getImageName());
-
+        p.setCategory11(c);
         Post upadtedPost=postRepo.save(p);
 
         return mmp.map(p,PostDto.class);

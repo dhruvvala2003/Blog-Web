@@ -11,6 +11,7 @@ import MyInfo from "./component/MyInfo";
 import UserDashbord from "./component/UserDashbord";
 import PostPage from "./pages/PostPage";
 import Categorys from "./pages/Categorys";
+import UpdateBlog from "./pages/UpdateBlog";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/post" element={<PostPage/>}/>
 
           <Route path="/category/:category_Id" element={<Categorys/>}/>
+          <Route path="/update-blog/:blogId" element={<UpdateBlog/>}/>
         </Routes>
       </BrowserRouter>
     </>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Button, Card, CardBody, CardText } from 'reactstrap'
 import { getCurrentUser, isLogin } from '../auth';
 
@@ -49,6 +49,10 @@ const Post = ({deletePost={deletePost}, post={ title:"this is post title",conten
 
                {
                 login && (user.uid == post.user11.id)? <Button color='danger' className='ms-2' onClick={()=>deletePost(post)}>Delete</Button> :''
+               }
+
+               {
+                login && (user.uid == post.user11.id)? <Button tag={Link} to={`/update-blog/${post.post_id}`} color='warning' className='ms-2' >Update</Button> :''
               
                }
                 

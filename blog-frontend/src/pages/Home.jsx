@@ -9,7 +9,7 @@ const Home = () => {
  
 
   return (
-        <div style={{"background-color":"#eceff1", "height":"170vh","width":"100vw"}}>
+        <div style={{"background-color":"#eceff1", "height":"200vh","width":"100vw"}}>
           <Base>
             <Container>
 

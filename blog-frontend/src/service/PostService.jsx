@@ -37,12 +37,27 @@ export const lodePostUserWise=(uid)=>{
 
 }
 
+//lode post using post-id
+
+export const lodePostById=(pid)=>{
+    return axios.get(`http://localhost:8080/api/v1/post/${pid}`).then((res)=>res.data);
+}
+
 //delete post
 
 export const deletePostService=(pid)=>{
     return axios.delete(`http://localhost:8080/api/v1/posts/${pid}`).then((res)=>res.data);
 
 }
+
+//update post
+
+export const updatePostService=(post,pid)=>{
+    // console.log("post=",post)
+
+    return axios.put(`http://localhost:8080/api/v1/post/${pid}`,post).then((res)=>res);
+}
+
 // uplode comment
 
 export const createComment=(comment,postId)=>{
