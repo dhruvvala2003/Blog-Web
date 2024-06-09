@@ -6,6 +6,20 @@ return axios.post(`http://localhost:8080/api/v1/user/${postData.userId}/category
     .then((res)=>res.data)
 }
 
+export const uplodePostImage=(image,post_id)=>{
+
+    let formData=new FormData();
+    formData.append("image",image)
+
+    return axios.post(`http://localhost:8080/api/v1/post/image/uplode/${post_id}`,formData,{
+
+        headers:{
+            'Content-Type':'multipart/form-data'
+        }
+    })
+    .then((res)=>res.data);
+}
+
 
 export const lodeAllPost=(pageNumber,pageSize)=>{
 

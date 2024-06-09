@@ -60,10 +60,10 @@ public class PostController {
     }
 
     //getPost by category
-    @GetMapping("/user/{cid}/category")
-    ResponseEntity<List<PostDto>>getPostByCategory(@PathVariable Integer cid)
+    @GetMapping("/user/{category_Id}/category")
+    ResponseEntity<List<PostDto>>getPostByCategory(@PathVariable Integer category_Id)
     {
-        List<PostDto> PostDtolist=  postService.getPostByCategory(cid);
+        List<PostDto> PostDtolist=  postService.getPostByCategory(category_Id);
         return  new ResponseEntity<>(PostDtolist,HttpStatus.OK);
 
     }
@@ -119,7 +119,7 @@ public class PostController {
 
 
     //serch by keyword
-    @GetMapping("posts/serch/{keyword}")
+    @GetMapping("/posts/serch/{keyword}")
 
     ResponseEntity<List<PostDto>>getPostByKeyword(@PathVariable("keyword")String  keyword)
     {
@@ -131,23 +131,23 @@ public class PostController {
 
     //update iamges in post
 
-    @PostMapping("post/image/uplode/{postId}")
+    @PostMapping("/post/image/uplode/{post_id}")
 
-    ResponseEntity<PostDto>upfdateImage(@RequestParam("image")MultipartFile image, @PathVariable Integer postId) throws IOException {
+    ResponseEntity<PostDto>upfdateImage(@RequestParam("image")MultipartFile image, @PathVariable Integer post_id) throws IOException {
 
-        PostDto postDto=postService.getPostById(postId);
+        PostDto postDto=postService.getPostById(post_id);
 
         String fileName=fileService.uplodeImage(path,image);
 
         postDto.setImageName(fileName);
-       PostDto pdto =postService.updatePost(postDto,postId);
+       PostDto pdto =postService.updatePost(postDto,post_id);
 
        return  new ResponseEntity<>(pdto,HttpStatus.OK);
 
     }
     //get post
 
-    @GetMapping(value = "post/image/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/post/image/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
     public void getImage(@PathVariable String imageName, HttpServletResponse response)throws IOException
     {
         InputStream resource=fileService.getResource(path,imageName);

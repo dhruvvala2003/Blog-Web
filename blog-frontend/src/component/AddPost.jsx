@@ -3,7 +3,7 @@ import { Button, Card, CardBody, Container, Form, Input, Label } from 'reactstra
 import { loadAllCategory } from '../service/CategoryService'
 import JoditEditor from 'jodit-react';
 import { toast } from 'react-toastify';
-import { doCreatePost } from '../service/PostService';
+import { doCreatePost, uplodePostImage } from '../service/PostService';
 import { getCurrentUser } from '../auth';
 
 const AddPost = () => {
@@ -13,6 +13,7 @@ const AddPost = () => {
 
     const [categorys,setCategorys]=useState(['Select Category']);
     const [user,setUser]=useState(undefined);
+    const [image,setImage]=useState(null);
 
     const editor = useRef(null);
 	
@@ -54,6 +55,17 @@ const AddPost = () => {
 
             doCreatePost(post).then((data)=>{
 
+                console.log("data=",data)
+                uplodePostImage(image,data.post_id).then((res)=>{
+
+                    toast.success("image uplode sucessfully")
+                })
+                .catch((error)=>{
+                    toast.warn("image not uploded !!")
+                    console.log(error)
+                    
+                })
+
                 toast.success("post created");
                 // console.log(data);
 
@@ -86,6 +98,12 @@ const AddPost = () => {
         })
     },[])
 
+    // for image
+    const handleImage=(e)=>{
+            console.log(e.target.files[0])
+            setImage(e.target.files[0]);
+
+    }
     
 
   return (
@@ -120,6 +138,13 @@ const AddPost = () => {
                             onChange={contenetFieldChange}
                         />
                                     
+                    </div>
+
+                    {/* for file  */}
+                    <div  className='mt-3'>
+
+                    <Label for='image'>Select Post Banner</Label>
+                    <Input id='image' type='file' onChange={handleImage} />
                     </div>
 
                     <div className='my-3'>

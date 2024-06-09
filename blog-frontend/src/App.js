@@ -10,6 +10,7 @@ import PrivateRouter from "./component/PrivateRouter";
 import MyInfo from "./component/MyInfo";
 import UserDashbord from "./component/UserDashbord";
 import PostPage from "./pages/PostPage";
+import Categorys from "./pages/Categorys";
 
 function App() {
   return (
@@ -36,11 +37,13 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<SignUp/>} />
 
-          <Route path="/user" element={< PrivateRouter/>}/>
-          <Route path="/myInfo" element={< MyInfo/>}/>
+          <Route path="/user" element={<PrivateRouter/>}/>
+          <Route path="/myInfo" element={<MyInfo/>}/>
           <Route path="/userDashbord" element={<UserDashbord/>}/>
 
-          <Route path="/post" element={< PostPage/>}/>
+          <Route path="/post" element={<PostPage/>}/>
+
+          <Route path="/category/:category_Id" element={<Categorys/>}/>
         </Routes>
       </BrowserRouter>
     </>

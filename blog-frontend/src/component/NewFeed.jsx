@@ -58,7 +58,7 @@ const NewFeed = () => {
       <Row>
           <Col md={
               {
-                size:10,
+                size:12,
                 offset:1
               }
           }> 

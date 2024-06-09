@@ -2,7 +2,8 @@ import React from 'react'
 import Base from '../component/Base'
 import { isLogin } from '../auth';
 import NewFeed from '../component/NewFeed';
-import { Container } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
+import CategorySideManue from '../component/CategorySideManue';
 const Home = () => {
 
  
@@ -12,7 +13,15 @@ const Home = () => {
           <Base>
             <Container>
 
-              <NewFeed/>
+              <Row >
+                <Col md={2} className='border mt-3 pt-3'>
+                    <CategorySideManue/>
+                </Col>
+
+                <Col md={10}>
+                    <NewFeed/>
+                </Col>
+              </Row>
             </Container>
           </Base>
         </div>
