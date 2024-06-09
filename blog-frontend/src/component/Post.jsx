@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Card, CardBody, CardText } from 'reactstrap'
+import { getCurrentUser, isLogin } from '../auth';
 
-const Post = ({post={title:"this is post title",content:"this is default content"}}) => {
+import { toast } from 'react-toastify';
+
+const Post = ({deletePost={deletePost}, post={ title:"this is post title",content:"this is default content"}}) => {
 
     const nav=useNavigate();
+
+    const [user,setUser]=useState(null);
+    const [login,setLogin]=useState(false);
+
+  useEffect(()=>{
+    // console.log(getCurrentUser())
+    // console.log(isLogin())
+    console.log(post)
+    console.log(getCurrentUser())
+    setUser(getCurrentUser())
+    setLogin(isLogin())
+
+  },[])
 
   const handlePost=()=>{
 
@@ -13,12 +29,13 @@ const Post = ({post={title:"this is post title",content:"this is default content
        ...post
 
       }
-
-
       nav("/post",{state:tmp});
 
   }
 
+
+
+  
   return (
     <div>
         <Card className='border-0 shadow-sm mt-3'>
@@ -29,6 +46,12 @@ const Post = ({post={title:"this is post title",content:"this is default content
                 </CardText>
 
                 <Button onClick={handlePost} >Read More</Button>
+
+               {
+                login && (user.uid == post.user11.id)? <Button color='danger' className='ms-2' onClick={()=>deletePost(post)}>Delete</Button> :''
+              
+               }
+                
             </CardBody>
 
 

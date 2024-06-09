@@ -9,7 +9,6 @@ const UserDashbord = () => {
       <Base>
 
         <Container>
-
             <AddPost/>
         </Container>
       </Base>

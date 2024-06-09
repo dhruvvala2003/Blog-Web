@@ -29,6 +29,20 @@ export const lodeAllPost=(pageNumber,pageSize)=>{
 }
 
 
+//lode post user vice
+
+export const lodePostUserWise=(uid)=>{
+
+    return axios.get(`http://localhost:8080/api/v1/user/${uid}/post`).then((res)=>res.data);
+
+}
+
+//delete post
+
+export const deletePostService=(pid)=>{
+    return axios.delete(`http://localhost:8080/api/v1/posts/${pid}`).then((res)=>res.data);
+
+}
 // uplode comment
 
 export const createComment=(comment,postId)=>{

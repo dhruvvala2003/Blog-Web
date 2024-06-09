@@ -6,6 +6,7 @@ import { Col, Container, Row } from 'reactstrap';
 import Post from '../component/Post';
 import { toast } from 'react-toastify';
 import { lodePostCategoryVice } from '../service/CategoryService';
+import { deletePostService } from '../service/PostService';
 
 const Categorys = () => {
 
@@ -26,11 +27,31 @@ const Categorys = () => {
         })
 
     },[category_Id]) 
+
+
+    // handling delete post
+
+  const deletePost=(post1)=>{
+
+    deletePostService(post1.post_id).then((res)=>{
+        toast.success("Post deleted sucessfully")
+
+        let newContent=post.filter((p)=>p.post_id != post1.post_id)
+
+        setPost([...newContent])
+
+      })
+      .catch((error)=>{
+        console.log(error)
+        toast.warn("post can't deleted ")
+      })
+  }
+
     
   return (  
       <Base>
 
-        <Container>
+        <Container style={{backgroundColor:"#eceff1"}}>
 
             <Row>
               <Col md={2} className='border mt-3 pt-3'>
@@ -42,7 +63,7 @@ const Categorys = () => {
                   {
                     post?.map((p,index)=>{
                       return(
-                          <Post post={p}/>
+                          <Post deletePost={deletePost} post={p}/>
                       )
 
                     })

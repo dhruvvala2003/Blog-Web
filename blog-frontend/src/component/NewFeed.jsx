@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react'
-import { lodeAllPost } from '../service/PostService'
+import { deletePostService, lodeAllPost } from '../service/PostService'
 import {Row,Col, Container, Pagination, PaginationItem, PaginationLink, Toast} from 'reactstrap'
 import Post from './Post';
 import { toast } from 'react-toastify'
@@ -52,6 +52,27 @@ const NewFeed = () => {
 
   }
 
+  // handling delete post
+
+  const deletePost=(post)=>{
+
+    deletePostService(post.post_id).then((res)=>{
+        toast.success("Post deleted sucessfully")
+
+        let newContent=Postcontent.content.filter((p)=>p.post_id != post.post_id)
+
+        setPostContent({...Postcontent,content:newContent})
+
+      })
+      .catch((error)=>{
+        console.log(error)
+        toast.warn("post can't deleted ")
+      })
+  }
+
+
+
+
   return (
     <div className="container-fluid">
 
@@ -69,7 +90,7 @@ const NewFeed = () => {
       
             {
               (Postcontent.content).map((post)=>{
-                 return <Post post={post}  key={post.post_id}  />
+                 return <Post deletePost={deletePost} post={post}  key={post.post_id}  />
                   
               })
             }
