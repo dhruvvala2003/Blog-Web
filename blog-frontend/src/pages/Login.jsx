@@ -34,8 +34,15 @@ const Login = () => {
 
     console.log(loginDetails.email, loginDetails.password);
 
+    // setTimeout(()=>{
 
+    //   toast.success("Sub Sach bhara he na ?, khao Ma Kasam 🤣 ")
+    // },4000)
+
+    alert("Sub Sach bhara he na ?, khao Ma Kasam 🤣 ")
+    
       
+
      const res= await axios.get("http://localhost:8080/login");
      console.log(res);
 

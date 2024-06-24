@@ -16,10 +16,6 @@ const Base = ({title="Welcome To Website" , children}) => {
 
     {children}
     
-  
-  <div>
-    <Footer/>
-  </div>
       </>
   )
 }

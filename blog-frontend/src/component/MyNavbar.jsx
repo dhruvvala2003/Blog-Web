@@ -42,7 +42,7 @@ const MyNavbar = () => {
 
     doLogout();
     setLogin(false);
-    
+    nav("/")
     
 
   }
@@ -96,7 +96,7 @@ const MyNavbar = () => {
               <>
               
             <NavItem>
-              <NavLink tag={ReactLink} to="/myInfo">
+              <NavLink tag={ReactLink} to={`/myInfo/${user.uid}`}>
                 Profile Info
               </NavLink>
             </NavItem>

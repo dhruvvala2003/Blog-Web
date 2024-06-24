@@ -24,11 +24,12 @@ const CategorySideManue = () => {
       
       
       <ListGroup >
-
+      {category.length!=0?
       <ListGroupItem tag={Link} to="/" action={true} className='border-0 mt-2' >
           All Blogs
         </ListGroupItem>
-
+       : ''
+      }
       {
         category?.map((cat,index)=>
         { 

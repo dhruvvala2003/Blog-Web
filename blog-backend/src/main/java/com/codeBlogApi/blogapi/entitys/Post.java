@@ -10,6 +10,7 @@ import java.util.Set;
 @Entity
 public class Post {
 
+//===================
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer post_id;
@@ -24,6 +25,25 @@ public class Post {
 
     Date addDate;
 
+//    int likecount;
+//    int dislikecount;
+
+
+//    public int getLikecount() {
+//        return likecount;
+//    }
+//
+//    public void setLikecount(int likecount) {
+//        this.likecount = likecount;
+//    }
+//
+//    public int getDislikecount() {
+//        return dislikecount;
+//    }
+//
+//    public void setDislikecount(int dislikecount) {
+//        this.dislikecount = dislikecount;
+//    }
 
     @ManyToOne
     @JoinColumn(name="Category_ID")
@@ -32,6 +52,7 @@ public class Post {
     @JoinColumn(name = "User_Id")
     @ManyToOne
     User user11;
+
 
 
     @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)

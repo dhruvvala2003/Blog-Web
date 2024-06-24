@@ -1,13 +1,14 @@
 package com.codeBlogApi.blogapi.controller;
 
 import com.codeBlogApi.blogapi.config.AppConstant;
-import com.codeBlogApi.blogapi.entitys.Post;
 import com.codeBlogApi.blogapi.paylode.ApiResponce;
 import com.codeBlogApi.blogapi.paylode.PostDto;
 import com.codeBlogApi.blogapi.paylode.PostResponce;
 import com.codeBlogApi.blogapi.services.FileService;
 import com.codeBlogApi.blogapi.services.PostService;
+import com.codeBlogApi.blogapi.services.UserService;
 import jakarta.servlet.http.HttpServletResponse;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,15 @@ public class PostController {
     PostService postService;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     FileService fileService;
+
+
+
+    @Autowired
+    ModelMapper mmp;
 
     @Value("${project.image}")
     String path;
@@ -154,5 +163,6 @@ public class PostController {
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(resource,response.getOutputStream());
     }
+
 
 }

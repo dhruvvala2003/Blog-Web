@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import { getCurrentUser, isLogin } from '../auth'
 import { getUser } from '../service/UserService'
 
+
 const PostPage = () => {
 
     const location=useLocation();
@@ -42,7 +43,7 @@ const PostPage = () => {
     useEffect(()=>{
         console.log(location.state)
         setData(location.state)
-
+       
         
     },[])
 
@@ -87,6 +88,7 @@ const PostPage = () => {
         })
     }
 
+    
   return (
     
     <Base>
@@ -101,6 +103,7 @@ const PostPage = () => {
                         <CardBody>
                             <CardText>Posted By <b>{(data.user11)?.name}</b> on <b>{getDate(data.addDate)}</b></CardText>
                             <CardText>{(data.category11)?.category_Title}</CardText>
+                            
                             <div  className='divider'  style={{width:'100%',height:'2px', background:'#e2e2e2'}}>
 
                             </div>

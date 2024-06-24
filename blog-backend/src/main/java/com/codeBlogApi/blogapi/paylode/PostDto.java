@@ -1,10 +1,6 @@
 package com.codeBlogApi.blogapi.paylode;
 
 
-import com.codeBlogApi.blogapi.entitys.Category;
-import com.codeBlogApi.blogapi.entitys.Comment;
-import com.codeBlogApi.blogapi.entitys.User;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,8 +17,29 @@ public class PostDto {
         this.post_id = post_id;
     }
 
+
+
     String title;
     String content;
+
+//    int likecount;
+//    int dislikecount;
+
+//    public int getLikecount() {
+//        return likecount;
+//    }
+//
+//    public void setLikecount(int likecount) {
+//        this.likecount = likecount;
+//    }
+//
+//    public int getDislikecount() {
+//        return dislikecount;
+//    }
+//
+//    public void setDislikecount(int dislikecount) {
+//        this.dislikecount = dislikecount;
+//    }
 
     public CategoryDto getCategory11() {
         return category11;

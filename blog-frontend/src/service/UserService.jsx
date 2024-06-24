@@ -8,3 +8,11 @@ export const signUpfun=(user)=>{
 export const getUser=(uid)=>{
     return axios.get(`http://localhost:8080/api/v1/user/${uid}`).then((res)=>res.data);
 }
+
+export const updateProfile=(user,uid)=>{
+    console.log(user)
+    console.log(uid)
+    
+    return axios.put(`http://localhost:8080/api/v1/user/${uid}`,user).then((res)=>res);
+
+}

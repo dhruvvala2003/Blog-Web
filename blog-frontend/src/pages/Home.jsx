@@ -4,6 +4,7 @@ import { isLogin } from '../auth';
 import NewFeed from '../component/NewFeed';
 import { Col, Container, Row } from 'reactstrap';
 import CategorySideManue from '../component/CategorySideManue';
+import SearchByKeyword from '../component/SearchByKeyword';
 const Home = () => {
 
  
@@ -14,7 +15,12 @@ const Home = () => {
             <Container>
 
               <Row >
+
+              
+              
+                
                 <Col md={2} className='border mt-3 pt-3'>
+                    <SearchByKeyword/>
                     <CategorySideManue/>
                 </Col>
 

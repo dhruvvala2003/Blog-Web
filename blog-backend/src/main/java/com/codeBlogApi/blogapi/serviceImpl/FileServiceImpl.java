@@ -7,16 +7,21 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 @Service
 public class FileServiceImpl implements FileService {
+
     @Override
     public String uplodeImage(String path, MultipartFile file) throws IOException {
 
         String fileName=file.getOriginalFilename();
 
+        String randomId= UUID.randomUUID().toString();
+
+        String TmpfileName=randomId.concat(fileName.substring(fileName.lastIndexOf(".")));
         //full path
-        String filePath= path + File.separator + fileName;
+        String filePath= path + File.separator + TmpfileName;
 
         File f=new File(path);
 
@@ -27,7 +32,7 @@ public class FileServiceImpl implements FileService {
         }
 
         Files.copy(file.getInputStream(), Paths.get(filePath));
-        return fileName;
+        return TmpfileName;
 
 
     }

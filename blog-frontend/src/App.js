@@ -12,6 +12,8 @@ import UserDashbord from "./component/UserDashbord";
 import PostPage from "./pages/PostPage";
 import Categorys from "./pages/Categorys";
 import UpdateBlog from "./pages/UpdateBlog";
+import ProfileUpdateForm from "./pages/ProfileUpdateForm";
+import SerchImpl from "./pages/SerchImpl";
 
 function App() {
   return (
@@ -39,13 +41,17 @@ function App() {
           <Route path="/signup" element={<SignUp/>} />
 
           <Route path="/user" element={<PrivateRouter/>}/>
-          <Route path="/myInfo" element={<MyInfo/>}/>
+          <Route path="/myInfo/:uid" element={<MyInfo/>}/>
           <Route path="/userDashbord" element={<UserDashbord/>}/>
 
           <Route path="/post" element={<PostPage/>}/>
 
           <Route path="/category/:category_Id" element={<Categorys/>}/>
           <Route path="/update-blog/:blogId" element={<UpdateBlog/>}/>
+          <Route path="/updateProfile" element={<ProfileUpdateForm/>}/>
+
+          <Route path="/serchImpl" element={<SerchImpl/>}/>
+          
         </Routes>
       </BrowserRouter>
     </>

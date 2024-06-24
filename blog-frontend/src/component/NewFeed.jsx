@@ -6,6 +6,8 @@ import { toast } from 'react-toastify'
 
 const NewFeed = () => {
 
+  const [spinner,setSpinner]=useState(true)
+
   const [Postcontent,setPostContent]=useState({
     content:[],
     totalPages:'',
@@ -25,21 +27,27 @@ const NewFeed = () => {
 
         if(pageNumber>Postcontent.pageNumber && Postcontent.lastPage)
           {
+            setSpinner(false)
             return;
+
           }
 
            if(pageNumber<Postcontent.pageNumber && Postcontent.pageNumber==0)
           {
+            setSpinner(false)
             return;
           }
 
           if(pageNumber<0)
             {
+              setSpinner(false)
               return;
             }
 
     lodeAllPost(pageNumber,pageSize).then((data)=>{
       console.log(data);
+      setSpinner(false)
+
       setPostContent(data);
       window.scroll(0,0)
 
@@ -74,8 +82,31 @@ const NewFeed = () => {
 
 
   return (
+
+    
+
     <div className="container-fluid">
 
+      {spinner ? (
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          position: 'fixed',
+          flexDirection:'column',
+          top: 0,
+          left: 0,
+          height: '100vh',
+          width: '100vw',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          zIndex: 9999
+        }}>
+          <img src='./Spinner2.svg' style={{ maxWidth: '100px' }} alt='Loading...' />
+          <h3>Bhai Aa raha hoon, nikal gaya Bas</h3>
+        </div>
+      ) :
+      (
+      <>
       <Row>
           <Col md={
               {
@@ -86,8 +117,9 @@ const NewFeed = () => {
           </Col>
 
       </Row>
-    
-      
+          
+         
+
             {
               (Postcontent.content).map((post)=>{
                  return <Post deletePost={deletePost} post={post}  key={post.post_id}  />
@@ -97,6 +129,7 @@ const NewFeed = () => {
 
           <Container className='mt-3'>
 
+       {Postcontent.content.length!=0?
           <Pagination>
 
             <PaginationItem  onClick={()=>changePage(Postcontent.pageNumber-1)} disabled={Postcontent.pageNumber==0}>
@@ -125,9 +158,11 @@ const NewFeed = () => {
             </PaginationItem>
 
           </Pagination>
-
+          :''
+       } 
           </Container>
-
+    </>
+  )}
     </div>
   )
 }

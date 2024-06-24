@@ -65,3 +65,7 @@ export const createComment=(comment,postId)=>{
     return axios.post(`http://localhost:8080/api/v1/post/${postId}/comments`,comment);
 
 }
+
+export const searchPost=(keyword)=>{
+    return axios.get(`http://localhost:8080/api/v1/posts/serch/${keyword}`).then((res)=>res);
+}

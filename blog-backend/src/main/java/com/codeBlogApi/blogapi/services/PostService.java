@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface PostService {
 
+
+
     //create
     PostDto createPost(PostDto postDto,Integer uid,Integer cid);
 
@@ -42,5 +44,11 @@ public interface PostService {
 
     List<PostDto> serchPost(String keyword);
 
+ //   //update post like count
+//    PostDto updateLikeCount(PostDto postDto,Integer postId);
+//
+//    //update dislike count
+//
+//    PostDto updateDisLikeCount(PostDto postDto,Integer postId);
 
 }
