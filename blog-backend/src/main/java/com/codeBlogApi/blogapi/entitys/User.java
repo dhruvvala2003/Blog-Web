@@ -43,6 +43,18 @@ public class User {
 
 
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<LikeCount> likes;
+    //
+
+
+    public Set<LikeCount> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<LikeCount> likes) {
+        this.likes = likes;
+    }
 
     public Set<Role> getRoles() {
         return roles;

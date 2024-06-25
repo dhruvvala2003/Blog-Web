@@ -59,6 +59,17 @@ public class Post {
     Set<Comment>comments=new HashSet<>();
 
 
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+    Set<LikeCount>likeCounts=new HashSet<>();
+
+    public Set<LikeCount> getLikeCounts() {
+        return likeCounts;
+    }
+
+
+    public void setLikeCounts(Set<LikeCount> likeCounts) {
+        this.likeCounts = likeCounts;
+    }
 
     public Set<Comment> getComments() {
         return comments;

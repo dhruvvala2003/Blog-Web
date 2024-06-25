@@ -6,9 +6,15 @@ import { createComment } from '../service/PostService'
 import { toast } from 'react-toastify'
 import { getCurrentUser, isLogin } from '../auth'
 import { getUser } from '../service/UserService'
+import axios from 'axios'
 
 
 const PostPage = () => {
+
+    // for post like
+    const [liked, setLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(0);
+
 
     const location=useLocation();
 
@@ -21,15 +27,30 @@ const PostPage = () => {
 
     useEffect(()=>{
 
+        console.log("posttt",location.state)
+        setData(location.state)
+
         if(!isLogin())
         {
+            
             console.log("not login")
             return;
         }
 
-        getUser((getCurrentUser().uid)).then((res)=>{
+         getUser((getCurrentUser().uid)).then((res)=>{
             console.log("user",res);
+            
+        const tmp=async()=>{
+         //like code :
+         const response = await axios.get(`http://localhost:8080/api/like/${location?.state.post_id}/liked/${res?.id}`);
+         setLiked(response.data);
+
             setUser(res);
+
+        }
+
+        tmp();
+
         })
         .catch((error)=>{
             console.log(error);
@@ -39,13 +60,21 @@ const PostPage = () => {
     },[])
 
     
-
+         //lode all likes default
     useEffect(()=>{
-        console.log(location.state)
-        setData(location.state)
-       
-        
+
+        const tmpfun=async()=>{
+        const response1 = await axios.get(`http://localhost:8080/api/like/${location?.state.post_id}/count`);
+         setLikeCount(response1.data);
+        }
+
+        tmpfun();
+
+ 
     },[])
+
+
+
 
     const getDate=(number)=>{
         return new Date(number).toLocaleDateString();
@@ -89,6 +118,25 @@ const PostPage = () => {
     }
 
     
+
+    
+      const handleToggleLike = async () => {
+
+            if(!isLogin())
+                {
+                    toast.warn("Login first")
+                    console.log("not login")
+                    return;
+                }
+                
+        const response = await axios.post(`http://localhost:8080/api/like/${data?.post_id}/toggle/${user.id}`, null );
+        setLikeCount(response.data);
+        setLiked(!liked);
+      };
+
+
+
+    
   return (
     
     <Base>
@@ -104,6 +152,9 @@ const PostPage = () => {
                             <CardText>Posted By <b>{(data.user11)?.name}</b> on <b>{getDate(data.addDate)}</b></CardText>
                             <CardText>{(data.category11)?.category_Title}</CardText>
                             
+                                <button onClick={handleToggleLike} style={{ color: liked ? 'green' : 'black' }}>
+                                {liked ? 'Unlike' : 'Like'} ({likeCount})
+                                </button>
                             <div  className='divider'  style={{width:'100%',height:'2px', background:'#e2e2e2'}}>
 
                             </div>
