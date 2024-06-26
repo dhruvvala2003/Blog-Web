@@ -7,7 +7,8 @@ import { toast } from 'react-toastify'
 import { getCurrentUser, isLogin } from '../auth'
 import { getUser } from '../service/UserService'
 import axios from 'axios'
-
+import { BiLike } from "react-icons/bi";
+import { BiSolidLike } from "react-icons/bi";
 
 const PostPage = () => {
 
@@ -153,7 +154,8 @@ const PostPage = () => {
                             <CardText>{(data.category11)?.category_Title}</CardText>
                             
                                 <button onClick={handleToggleLike} style={{ color: liked ? 'green' : 'black' }}>
-                                {liked ? 'Unlike' : 'Like'} ({likeCount})
+                                {/* {liked ? 'Unlike' : 'Like'} ({likeCount}) */}
+                                {liked ?  <BiSolidLike />: <BiLike />} ({likeCount}) 
                                 </button>
                             <div  className='divider'  style={{width:'100%',height:'2px', background:'#e2e2e2'}}>
 
